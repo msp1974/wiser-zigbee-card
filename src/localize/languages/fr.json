@@ -1,0 +1,22 @@
+{
+  "common": {
+    "version": "Déclinaison",
+    "invalid_configuration": "Configuration Invalide"
+  },
+  "wiser": {
+    "actions": {
+      "copy": "Copie",
+      "files": "Fichier",
+      "add_before": "Ajouter Avant",
+      "add_after": "Ajouter Après"
+    },
+    "headings": {
+      "schedule_actions": "Schedule Actions",
+      "schedule_type": "Schedule Type",
+      "schedule_id": "Schedule Id",
+      "schedule_name": "Schedule Name",
+      "schedule_assignment": "Schedule Assignment",
+      "not_assigned": "(Not Assigned)"
+    }
+  }
+}
