@@ -6,17 +6,17 @@ export default function (userOptions = {}) {
 
   if (files.length === 0) {
     return {
-      name: 'ignore',
+      name: "ignore",
     };
   }
 
   return {
-    name: 'ignore',
+    name: "ignore",
 
     load(id) {
       return files.some((toIgnorePath) => id.startsWith(toIgnorePath))
         ? {
-            code: '',
+            code: "",
           }
         : null;
     },

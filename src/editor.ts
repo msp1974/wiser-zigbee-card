@@ -1,21 +1,28 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { LitElement, html, TemplateResult, css, CSSResultGroup } from 'lit';
-import { HomeAssistant, fireEvent, LovelaceCardEditor } from 'custom-card-helpers';
+import { LitElement, html, TemplateResult, css, CSSResultGroup } from "lit";
+import {
+  HomeAssistant,
+  fireEvent,
+  LovelaceCardEditor,
+} from "custom-card-helpers";
 
-import { ScopedRegistryHost } from '@lit-labs/scoped-registry-mixin';
-import { WiserZigbeeCardConfig } from './types';
-import { customElement, property, state } from 'lit/decorators';
-import { formfieldDefinition } from '../elements/formfield';
-import { selectDefinition } from '../elements/select';
-import { switchDefinition } from '../elements/switch';
-import { textfieldDefinition } from '../elements/textfield';
+import { ScopedRegistryHost } from "@lit-labs/scoped-registry-mixin";
+import { WiserZigbeeCardConfig } from "./types";
+import { customElement, property, state } from "lit/decorators.js";
+import { formfieldDefinition } from "../elements/formfield";
+import { selectDefinition } from "../elements/select";
+import { switchDefinition } from "../elements/switch";
+import { textfieldDefinition } from "../elements/textfield";
 
-import { fetchHubs } from './data/websockets';
+import { fetchHubs } from "./data/websockets";
 
-import { CARD_VERSION } from './const';
+import { CARD_VERSION } from "./const";
 
-@customElement('wiser-zigbee-card-editor')
-export class WiserZigbeeCardEditor extends ScopedRegistryHost(LitElement) implements LovelaceCardEditor {
+@customElement("wiser-zigbee-card-editor")
+export class WiserZigbeeCardEditor
+  extends ScopedRegistryHost(LitElement)
+  implements LovelaceCardEditor
+{
   @property({ attribute: false }) public hass?: HomeAssistant;
 
   @state() private _config?: WiserZigbeeCardConfig;
@@ -33,8 +40,24 @@ export class WiserZigbeeCardEditor extends ScopedRegistryHost(LitElement) implem
 
   public setConfig(config: WiserZigbeeCardConfig): void {
     this._config = config;
+    if (this._config.auto_update == undefined) {
+      this._config = {
+        ...this._config,
+        ["auto_update"]: true,
+      };
+    }
 
     this.loadCardHelpers();
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    const boundLayoutSaveHandler = this.save_layout.bind(this);
+    window.addEventListener("wiser-zigbee-save-layout", boundLayoutSaveHandler);
+  }
+  disconnectedCallback() {
+    window.removeEventListener("wiser-zigbee-save-layout", this.save_layout);
+    super.disconnectedCallback();
   }
 
   protected shouldUpdate(): boolean {
@@ -46,32 +69,15 @@ export class WiserZigbeeCardEditor extends ScopedRegistryHost(LitElement) implem
   }
 
   get _name(): string {
-    return this._config?.name || '';
+    return this._config?.name || "";
   }
 
   get _hub(): string {
-    return this._config?.hub || '';
+    return this._config?.hub || "";
   }
 
-  get _selected_schedule(): string {
-    return this._config?.selected_schedule || '';
-  }
-
-  get _theme_colors(): boolean {
-    return this._config?.theme_colors || false
-  }
-
-  get _show_badges(): boolean {
-    return this._config?.show_badges || false
-  }
-
-  get _display_only(): boolean {
-    return this._config?.display_only || false
-  }
-
-
-  get _admin_only(): boolean {
-    return this._config?.admin_only || false
+  get _auto_update(): boolean {
+    return this._config?.auto_update || false;
   }
 
   async loadData(): Promise<void> {
@@ -87,29 +93,40 @@ export class WiserZigbeeCardEditor extends ScopedRegistryHost(LitElement) implem
 
     return html`
       ${this.hubSelector()}
-      <br>
-      <div class="version">
-        Version: ${CARD_VERSION}
-      </div>
+      <mwc-textfield
+        label="Title (optional)"
+        .value=${this._name}
+        .configValue=${"name"}
+        @input=${this._valueChanged}
+      ></mwc-textfield>
+      <mwc-formfield .label=${"Auto refresh"}>
+        <mwc-switch
+          .checked=${this._auto_update === true}
+          .configValue=${"auto_update"}
+          @change=${this._valueChanged}
+        ></mwc-switch>
+      </mwc-formfield>
+      <br />
+      <div class="version">Version: ${CARD_VERSION}</div>
     `;
   }
 
   private hubSelector() {
-    const hubs = (this._hubs ? this._hubs : []);
+    const hubs = this._hubs ? this._hubs : [];
     if (hubs.length > 1) {
       return html`
         <mwc-select
           naturalMenuWidth
           fixedMenuPosition
           label="Wiser Hub (Optional)"
-          .configValue=${'hub'}
+          .configValue=${"hub"}
           .value=${this._hub ? this._hub : hubs[0]}
           @selected=${this._valueChanged}
           @closed=${(ev) => ev.stopPropagation()}
         >
           ${this._hubs?.map((hub) => {
-          return html`<mwc-list-item .value=${hub}>${hub}</mwc-list-item>`;
-        })}
+            return html`<mwc-list-item .value=${hub}>${hub}</mwc-list-item>`;
+          })}
         </mwc-select>
       `;
     }
@@ -126,7 +143,17 @@ export class WiserZigbeeCardEditor extends ScopedRegistryHost(LitElement) implem
   private async loadCardHelpers(): Promise<void> {
     this._helpers = await (window as any).loadCardHelpers();
     await this.loadData();
+  }
 
+  private save_layout(ev): void {
+    if (!this._config) {
+      return;
+    }
+    this._config = {
+      ...this._config,
+      ["layout_data"]: ev.detail.layout_data,
+    };
+    fireEvent(this, "config-changed", { config: this._config });
   }
 
   private _valueChanged(ev): void {
@@ -138,19 +165,26 @@ export class WiserZigbeeCardEditor extends ScopedRegistryHost(LitElement) implem
       return;
     }
     if (target.configValue) {
-      if (target.value === '') {
+      // If hub changes, delete layout data
+      if (target.configValue == "hub") {
+        this._config = {
+          ...this._config,
+          ["layout_data"]: "",
+        };
+      }
+      if (target.value === "") {
         const tmpConfig = { ...this._config };
         delete tmpConfig[target.configValue];
         this._config = tmpConfig;
       } else {
         this._config = {
           ...this._config,
-          [target.configValue]: target.checked !== undefined ? target.checked : target.value,
+          [target.configValue]:
+            target.checked !== undefined ? target.checked : target.value,
         };
       }
     }
-    if (target.configValue === 'hub') {this._config.selected_schedule = ''}
-    fireEvent(this, 'config-changed', { config: this._config });
+    fireEvent(this, "config-changed", { config: this._config });
   }
 
   static styles: CSSResultGroup = css`
