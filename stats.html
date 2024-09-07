@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -248,7 +248,7 @@
                       null != t.__h ? [o] : null,
                       u,
                       null == o ? _$2(t) : o,
-                      t.__h
+                      t.__h,
                     ),
                     z$1(u, t),
                     t.__e != o && k$1(t)));
@@ -271,14 +271,20 @@
                 null == (k = l[h]) || "boolean" == typeof k
                   ? null
                   : "string" == typeof k ||
-                    "number" == typeof k ||
-                    "bigint" == typeof k
-                  ? v$1(null, k, null, null, k)
-                  : Array.isArray(k)
-                  ? v$1(p$1, { children: k }, null, null, null)
-                  : k.__b > 0
-                  ? v$1(k.type, k.props, k.key, k.ref ? k.ref : null, k.__v)
-                  : k)
+                      "number" == typeof k ||
+                      "bigint" == typeof k
+                    ? v$1(null, k, null, null, k)
+                    : Array.isArray(k)
+                      ? v$1(p$1, { children: k }, null, null, null)
+                      : k.__b > 0
+                        ? v$1(
+                            k.type,
+                            k.props,
+                            k.key,
+                            k.ref ? k.ref : null,
+                            k.__v,
+                          )
+                        : k)
             ) {
               if (
                 ((k.__ = u),
@@ -356,8 +362,8 @@
                 null == u
                   ? ""
                   : "number" != typeof u || c$1.test(l)
-                  ? u
-                  : u + "px");
+                    ? u
+                    : u + "px");
         }
         function H(n, l, u, i, t) {
           var o;
@@ -618,7 +624,7 @@
                 r,
                 e,
                 r ? r[0] : i.__k && _$2(i, 0),
-                c
+                c,
               ),
               null != r)
             )
@@ -682,13 +688,13 @@
               !o && t
                 ? [t]
                 : r
-                ? null
-                : i.firstChild
-                ? n.call(i.childNodes)
-                : null,
+                  ? null
+                  : i.firstChild
+                    ? n.call(i.childNodes)
+                    : null,
               e,
               !o && t ? t : r ? r.__e : i.firstChild,
-              o
+              o,
             ),
             z$1(e, u);
         }
@@ -1148,7 +1154,7 @@
                 value: sumValue,
                 dice: dx < dy,
                 children: nodes.slice(i0, i1),
-              })
+              }),
             );
             if (row.dice)
               treemapDice(
@@ -1156,7 +1162,7 @@
                 x0,
                 y0,
                 x1,
-                value ? (y0 += (dy * sumValue) / value) : y1
+                value ? (y0 += (dy * sumValue) / value) : y1,
               );
             else
               treemapSlice(
@@ -1164,7 +1170,7 @@
                 x0,
                 y0,
                 value ? (x0 += (dx * sumValue) / value) : x1,
-                y1
+                y1,
               );
             (value -= sumValue), (i0 = i1);
           }
@@ -1320,7 +1326,7 @@
                     x0,
                     y0,
                     x1,
-                    value ? (y0 += ((y1 - y0) * row.value) / value) : y1
+                    value ? (y0 += ((y1 - y0) * row.value) / value) : y1,
                   );
                 else
                   treemapSlice(
@@ -1328,7 +1334,7 @@
                     x0,
                     y0,
                     value ? (x0 += ((x1 - x0) * row.value) / value) : x1,
-                    y1
+                    y1,
                   );
                 value -= row.value;
               }
@@ -1339,7 +1345,7 @@
                 x0,
                 y0,
                 x1,
-                y1
+                y1,
               );
               rows.ratio = ratio;
             }
@@ -1659,17 +1665,17 @@
                                       "label",
                                       Object.assign(
                                         { htmlFor: id },
-                                        { children: LABELS[sizeProp] }
-                                      )
+                                        { children: LABELS[sizeProp] },
+                                      ),
                                     ),
                                   ],
-                                }
+                                },
                               ),
-                              sizeProp
+                              sizeProp,
                             );
                           }),
-                      }
-                    )
+                      },
+                    ),
                   ),
                   o$1(
                     "div",
@@ -1687,8 +1693,8 @@
                                     "label",
                                     Object.assign(
                                       { htmlFor: "module-filter-exclude" },
-                                      { children: "Exclude" }
-                                    )
+                                      { children: "Exclude" },
+                                    ),
                                   ),
                                   o$1("input", {
                                     type: "text",
@@ -1698,8 +1704,8 @@
                                     placeholder: PLACEHOLDER,
                                   }),
                                 ],
-                              }
-                            )
+                              },
+                            ),
                           ),
                           o$1(
                             "div",
@@ -1711,8 +1717,8 @@
                                     "label",
                                     Object.assign(
                                       { htmlFor: "module-filter-include" },
-                                      { children: "Include" }
-                                    )
+                                      { children: "Include" },
+                                    ),
                                   ),
                                   o$1("input", {
                                     type: "text",
@@ -1722,16 +1728,16 @@
                                     placeholder: PLACEHOLDER,
                                   }),
                                 ],
-                              }
-                            )
+                              },
+                            ),
                           ),
                         ],
-                      }
-                    )
+                      },
+                    ),
                   ),
                 ],
-              }
-            )
+              },
+            ),
           );
         };
 
@@ -2467,7 +2473,7 @@
           let len = input.length;
           if (len > max) {
             throw new SyntaxError(
-              `Input length: ${len}, exceeds maximum allowed length: ${max}`
+              `Input length: ${len}, exceeds maximum allowed length: ${max}`,
             );
           }
 
@@ -2717,7 +2723,7 @@
                   return star;
                 }
                 return esc ? m : `\\${m}`;
-              }
+              },
             );
 
             if (backslashes === true) {
@@ -3148,7 +3154,7 @@
 
                 if (next === "<" && !utils$1.supportsLookbehinds()) {
                   throw new Error(
-                    "Node.js v10 or higher is required for regex lookbehinds"
+                    "Node.js v10 or higher is required for regex lookbehinds",
                   );
                 }
 
@@ -3350,7 +3356,7 @@
               ) {
                 state.output = state.output.slice(
                   0,
-                  -(prior.output + prev.output).length
+                  -(prior.output + prev.output).length,
                 );
                 prior.output = `(?:${prior.output}`;
 
@@ -3373,13 +3379,13 @@
 
                 state.output = state.output.slice(
                   0,
-                  -(prior.output + prev.output).length
+                  -(prior.output + prev.output).length,
                 );
                 prior.output = `(?:${prior.output}`;
 
                 prev.type = "globstar";
                 prev.output = `${globstar(
-                  opts
+                  opts,
                 )}${SLASH_LITERAL}|${SLASH_LITERAL}${end})`;
                 prev.value += value;
 
@@ -3396,7 +3402,7 @@
                 prev.type = "globstar";
                 prev.value += value;
                 prev.output = `(?:^|${SLASH_LITERAL}|${globstar(
-                  opts
+                  opts,
                 )}${SLASH_LITERAL})`;
                 state.output = prev.output;
                 state.globstar = true;
@@ -3529,7 +3535,7 @@
           const len = input.length;
           if (len > max) {
             throw new SyntaxError(
-              `Input length: ${len}, exceeds maximum allowed length: ${max}`
+              `Input length: ${len}, exceeds maximum allowed length: ${max}`,
             );
           }
 
@@ -3584,17 +3590,17 @@
 
               case "**/*":
                 return `(?:${nodot}${globstar(
-                  opts
+                  opts,
                 )}${SLASH_LITERAL})?${slashDot}${ONE_CHAR}${star}`;
 
               case "**/*.*":
                 return `(?:${nodot}${globstar(
-                  opts
+                  opts,
                 )}${SLASH_LITERAL})?${slashDot}${star}${DOT_LITERAL}${ONE_CHAR}${star}`;
 
               case "**/.*":
                 return `(?:${nodot}${globstar(
-                  opts
+                  opts,
                 )}${SLASH_LITERAL})?${DOT_LITERAL}${ONE_CHAR}${star}`;
 
               default: {
@@ -3653,7 +3659,7 @@
         const picomatch = (glob, options, returnState = false) => {
           if (Array.isArray(glob)) {
             const fns = glob.map((input) =>
-              picomatch(input, options, returnState)
+              picomatch(input, options, returnState),
             );
             const arrayMatcher = (str) => {
               for (const isMatch of fns) {
@@ -3696,7 +3702,7 @@
               input,
               regex,
               options,
-              { glob, posix }
+              { glob, posix },
             );
             const result = {
               glob,
@@ -3896,7 +3902,7 @@
           parsed,
           options,
           returnOutput = false,
-          returnState = false
+          returnState = false,
         ) => {
           if (returnOutput === true) {
             return parsed.output;
@@ -3923,7 +3929,7 @@
           input,
           options,
           returnOutput = false,
-          returnState = false
+          returnState = false,
         ) => {
           if (!input || typeof input !== "string") {
             throw new TypeError("Expected a non-empty string");
@@ -3957,7 +3963,7 @@
             parsed,
             options,
             returnOutput,
-            returnState
+            returnState,
           );
         };
 
@@ -4078,13 +4084,13 @@
               .map((entry) =>
                 entry.startsWith('"') && entry.endsWith('"')
                   ? entry.substring(1, entry.length - 1)
-                  : entry
+                  : entry,
               )
               // unquote '
               .map((entry) =>
                 entry.startsWith("'") && entry.endsWith("'")
                   ? entry.substring(1, entry.length - 1)
-                  : entry
+                  : entry,
               )
               // remove empty strings
               .filter((entry) => entry)
@@ -4110,25 +4116,25 @@
           const [excludeFilter, setExcludeFilter] = p("");
           const setIncludeFilterTrottled = F(
             () => throttleFilter(setIncludeFilter, 200),
-            []
+            [],
           );
           const setExcludeFilterTrottled = F(
             () => throttleFilter(setExcludeFilter, 200),
-            []
+            [],
           );
           const isIncluded = F(
             () =>
               createFilter(
                 prepareFilter(includeFilter),
-                prepareFilter(excludeFilter)
+                prepareFilter(excludeFilter),
               ),
-            [includeFilter, excludeFilter]
+            [includeFilter, excludeFilter],
           );
           const getModuleFilterMultiplier = T(
             (bundleId, data) => {
               return isIncluded(bundleId, data.id) ? 1 : 0;
             },
-            [isIncluded]
+            [isIncluded],
           );
           return {
             getModuleFilterMultiplier,
@@ -4143,24 +4149,24 @@
           return a == null || b == null
             ? NaN
             : a < b
-            ? -1
-            : a > b
-            ? 1
-            : a >= b
-            ? 0
-            : NaN;
+              ? -1
+              : a > b
+                ? 1
+                : a >= b
+                  ? 0
+                  : NaN;
         }
 
         function descending(a, b) {
           return a == null || b == null
             ? NaN
             : b < a
-            ? -1
-            : b > a
-            ? 1
-            : b >= a
-            ? 0
-            : NaN;
+              ? -1
+              : b > a
+                ? 1
+                : b >= a
+                  ? 0
+                  : NaN;
         }
 
         function bisector(f) {
@@ -4400,18 +4406,18 @@
               scale = Math.min(
                 (width * 0.9) / textRectRef.current.width,
                 Math.min(height, TOP_PADDING + PADDING) /
-                  textRectRef.current.height
+                  textRectRef.current.height,
               );
               scale = Math.min(1, scale);
               textRef.current.setAttribute(
                 "y",
-                String(Math.min(TOP_PADDING + PADDING, height) / 2 / scale)
+                String(Math.min(TOP_PADDING + PADDING, height) / 2 / scale),
               );
               textRef.current.setAttribute("x", String(width / 2 / scale));
             } else {
               scale = Math.min(
                 (width * 0.9) / textRectRef.current.width,
-                (height * 0.9) / textRectRef.current.height
+                (height * 0.9) / textRectRef.current.height,
               );
               scale = Math.min(1, scale);
               textRef.current.setAttribute("y", String(height / 2 / scale));
@@ -4419,7 +4425,7 @@
             }
             textRef.current.setAttribute(
               "transform",
-              `scale(${scale.toFixed(2)})`
+              `scale(${scale.toFixed(2)})`,
             );
           }, [children, height, width]);
           if (width == 0 || height == 0) {
@@ -4470,12 +4476,12 @@
                         },
                       },
                       textProps,
-                      { children: data.name }
-                    )
+                      { children: data.name },
+                    ),
                   ),
                 ],
-              }
-            )
+              },
+            ),
           );
         };
 
@@ -4516,16 +4522,16 @@
                               selected: selectedNode === node,
                               onClick: onNodeClick,
                             },
-                            getModuleIds(node.data).nodeUid.id
+                            getModuleIds(node.data).nodeUid.id,
                           );
                         }),
-                      }
+                      },
                     ),
-                    key
+                    key,
                   );
                 }),
-              }
-            )
+              },
+            ),
           );
         };
 
@@ -4787,7 +4793,7 @@
                           ")",
                         ],
                       },
-                      sizeProp
+                      sizeProp,
                     );
                   } else {
                     return o$1(
@@ -4799,7 +4805,7 @@
                           format_1(getModuleSize(node.data, sizeProp)),
                         ],
                       },
-                      sizeProp
+                      sizeProp,
                     );
                   }
                 }),
@@ -4877,8 +4883,8 @@
                 ref: ref,
                 style: style,
               },
-              { children: content }
-            )
+              { children: content },
+            ),
           );
         };
 
@@ -4971,7 +4977,7 @@
                 const meta = data.nodeMetas[data.nodeParts[node.uid].metaUid];
                 const bundleId =
                   (_a = Object.entries(meta.moduleParts).find(
-                    ([bundleId, uid]) => uid == node.uid
+                    ([bundleId, uid]) => uid == node.uid,
                   )) === null || _a === void 0
                     ? void 0
                     : _a[0];
@@ -4979,14 +4985,14 @@
                 const zoomMultiplier = getNodeSizeMultiplier(node);
                 const filterMultiplier = getModuleFilterMultiplier(
                   bundleId,
-                  meta
+                  meta,
                 );
                 return ownSize * zoomMultiplier * filterMultiplier;
               })
               .sort(
                 (a, b) =>
                   getModuleSize(a.data, sizeProperty) -
-                  getModuleSize(b.data, sizeProperty)
+                  getModuleSize(b.data, sizeProperty),
               );
             return layout(rootWithSizesAndSorted);
           }, [
@@ -5270,54 +5276,54 @@
               l === 6
                 ? rgbn(m) // #ff0000
                 : l === 3
-                ? new Rgb(
-                    ((m >> 8) & 0xf) | ((m >> 4) & 0xf0),
-                    ((m >> 4) & 0xf) | (m & 0xf0),
-                    ((m & 0xf) << 4) | (m & 0xf),
-                    1
-                  ) // #f00
-                : l === 8
-                ? rgba(
-                    (m >> 24) & 0xff,
-                    (m >> 16) & 0xff,
-                    (m >> 8) & 0xff,
-                    (m & 0xff) / 0xff
-                  ) // #ff000000
-                : l === 4
-                ? rgba(
-                    ((m >> 12) & 0xf) | ((m >> 8) & 0xf0),
-                    ((m >> 8) & 0xf) | ((m >> 4) & 0xf0),
-                    ((m >> 4) & 0xf) | (m & 0xf0),
-                    (((m & 0xf) << 4) | (m & 0xf)) / 0xff
-                  ) // #f000
-                : null) // invalid hex
+                  ? new Rgb(
+                      ((m >> 8) & 0xf) | ((m >> 4) & 0xf0),
+                      ((m >> 4) & 0xf) | (m & 0xf0),
+                      ((m & 0xf) << 4) | (m & 0xf),
+                      1,
+                    ) // #f00
+                  : l === 8
+                    ? rgba(
+                        (m >> 24) & 0xff,
+                        (m >> 16) & 0xff,
+                        (m >> 8) & 0xff,
+                        (m & 0xff) / 0xff,
+                      ) // #ff000000
+                    : l === 4
+                      ? rgba(
+                          ((m >> 12) & 0xf) | ((m >> 8) & 0xf0),
+                          ((m >> 8) & 0xf) | ((m >> 4) & 0xf0),
+                          ((m >> 4) & 0xf) | (m & 0xf0),
+                          (((m & 0xf) << 4) | (m & 0xf)) / 0xff,
+                        ) // #f000
+                      : null) // invalid hex
             : (m = reRgbInteger.exec(format))
-            ? new Rgb(m[1], m[2], m[3], 1) // rgb(255, 0, 0)
-            : (m = reRgbPercent.exec(format))
-            ? new Rgb(
-                (m[1] * 255) / 100,
-                (m[2] * 255) / 100,
-                (m[3] * 255) / 100,
-                1
-              ) // rgb(100%, 0%, 0%)
-            : (m = reRgbaInteger.exec(format))
-            ? rgba(m[1], m[2], m[3], m[4]) // rgba(255, 0, 0, 1)
-            : (m = reRgbaPercent.exec(format))
-            ? rgba(
-                (m[1] * 255) / 100,
-                (m[2] * 255) / 100,
-                (m[3] * 255) / 100,
-                m[4]
-              ) // rgb(100%, 0%, 0%, 1)
-            : (m = reHslPercent.exec(format))
-            ? hsla(m[1], m[2] / 100, m[3] / 100, 1) // hsl(120, 50%, 50%)
-            : (m = reHslaPercent.exec(format))
-            ? hsla(m[1], m[2] / 100, m[3] / 100, m[4]) // hsla(120, 50%, 50%, 1)
-            : named.hasOwnProperty(format)
-            ? rgbn(named[format]) // eslint-disable-line no-prototype-builtins
-            : format === "transparent"
-            ? new Rgb(NaN, NaN, NaN, 0)
-            : null;
+              ? new Rgb(m[1], m[2], m[3], 1) // rgb(255, 0, 0)
+              : (m = reRgbPercent.exec(format))
+                ? new Rgb(
+                    (m[1] * 255) / 100,
+                    (m[2] * 255) / 100,
+                    (m[3] * 255) / 100,
+                    1,
+                  ) // rgb(100%, 0%, 0%)
+                : (m = reRgbaInteger.exec(format))
+                  ? rgba(m[1], m[2], m[3], m[4]) // rgba(255, 0, 0, 1)
+                  : (m = reRgbaPercent.exec(format))
+                    ? rgba(
+                        (m[1] * 255) / 100,
+                        (m[2] * 255) / 100,
+                        (m[3] * 255) / 100,
+                        m[4],
+                      ) // rgb(100%, 0%, 0%, 1)
+                    : (m = reHslPercent.exec(format))
+                      ? hsla(m[1], m[2] / 100, m[3] / 100, 1) // hsl(120, 50%, 50%)
+                      : (m = reHslaPercent.exec(format))
+                        ? hsla(m[1], m[2] / 100, m[3] / 100, m[4]) // hsla(120, 50%, 50%, 1)
+                        : named.hasOwnProperty(format)
+                          ? rgbn(named[format]) // eslint-disable-line no-prototype-builtins
+                          : format === "transparent"
+                            ? new Rgb(NaN, NaN, NaN, 0)
+                            : null;
         }
 
         function rgbn(n) {
@@ -5369,7 +5375,7 @@
                 clampi(this.r),
                 clampi(this.g),
                 clampi(this.b),
-                clampa(this.opacity)
+                clampa(this.opacity),
               );
             },
             displayable() {
@@ -5389,7 +5395,7 @@
             formatHex8: rgb_formatHex8,
             formatRgb: rgb_formatRgb,
             toString: rgb_formatRgb,
-          })
+          }),
         );
 
         function rgb_formatHex() {
@@ -5398,14 +5404,14 @@
 
         function rgb_formatHex8() {
           return `#${hex(this.r)}${hex(this.g)}${hex(this.b)}${hex(
-            (isNaN(this.opacity) ? 1 : this.opacity) * 255
+            (isNaN(this.opacity) ? 1 : this.opacity) * 255,
           )}`;
         }
 
         function rgb_formatRgb() {
           const a = clampa(this.opacity);
           return `${a === 1 ? "rgb(" : "rgba("}${clampi(this.r)}, ${clampi(
-            this.g
+            this.g,
           )}, ${clampi(this.b)}${a === 1 ? ")" : `, ${a})`}`;
         }
 
@@ -5490,7 +5496,7 @@
                 hsl2rgb(h >= 240 ? h - 240 : h + 120, m1, m2),
                 hsl2rgb(h, m1, m2),
                 hsl2rgb(h < 120 ? h + 240 : h - 120, m1, m2),
-                this.opacity
+                this.opacity,
               );
             },
             clamp() {
@@ -5498,7 +5504,7 @@
                 clamph(this.h),
                 clampt(this.s),
                 clampt(this.l),
-                clampa(this.opacity)
+                clampa(this.opacity),
               );
             },
             displayable() {
@@ -5516,7 +5522,7 @@
                 clampt(this.s) * 100
               }%, ${clampt(this.l) * 100}%${a === 1 ? ")" : `, ${a})`}`;
             },
-          })
+          }),
         );
 
         function clamph(value) {
@@ -5534,10 +5540,10 @@
             (h < 60
               ? m1 + ((m2 - m1) * h) / 60
               : h < 180
-              ? m2
-              : h < 240
-              ? m1 + ((m2 - m1) * (240 - h)) / 60
-              : m1) * 255
+                ? m2
+                : h < 240
+                  ? m1 + ((m2 - m1) * (240 - h)) / 60
+                  : m1) * 255
           );
         }
 
@@ -5594,7 +5600,7 @@
                 this.l + K * (k == null ? 1 : k),
                 this.a,
                 this.b,
-                this.opacity
+                this.opacity,
               );
             },
             darker(k) {
@@ -5602,7 +5608,7 @@
                 this.l - K * (k == null ? 1 : k),
                 this.a,
                 this.b,
-                this.opacity
+                this.opacity,
               );
             },
             rgb() {
@@ -5616,10 +5622,10 @@
                 lrgb2rgb(3.1338561 * x - 1.6168667 * y - 0.4906146 * z),
                 lrgb2rgb(-0.9787684 * x + 1.9161415 * y + 0.033454 * z),
                 lrgb2rgb(0.0719453 * x - 0.2289914 * y + 1.4052427 * z),
-                this.opacity
+                this.opacity,
               );
             },
-          })
+          }),
         );
 
         function xyz2lab(t) {
@@ -5653,7 +5659,7 @@
             h < 0 ? h + 360 : h,
             Math.sqrt(o.a * o.a + o.b * o.b),
             o.l,
-            o.opacity
+            o.opacity,
           );
         }
 
@@ -5685,7 +5691,7 @@
                 this.h,
                 this.c,
                 this.l + K * (k == null ? 1 : k),
-                this.opacity
+                this.opacity,
               );
             },
             darker(k) {
@@ -5693,13 +5699,13 @@
                 this.h,
                 this.c,
                 this.l - K * (k == null ? 1 : k),
-                this.opacity
+                this.opacity,
               );
             },
             rgb() {
               return hcl2lab(this).rgb();
             },
-          })
+          }),
         );
 
         var A = -0.14861,
@@ -5761,10 +5767,10 @@
                 255 * (l + a * (A * cosh + B * sinh)),
                 255 * (l + a * (C * cosh + D * sinh)),
                 255 * (l + a * (E * cosh)),
-                this.opacity
+                this.opacity,
               );
             },
-          })
+          }),
         );
 
         var constant = (x) => () => x;
@@ -5791,7 +5797,7 @@
           return d
             ? linear$1(
                 a,
-                d > 180 || d < -180 ? d - 360 * Math.round(d / 360) : d
+                d > 180 || d < -180 ? d - 360 * Math.round(d / 360) : d,
               )
             : constant(isNaN(a) ? b : a);
         }
@@ -5939,12 +5945,14 @@
             if ((bs = bm.index) > bi) {
               // a string precedes the next number in b
               bs = b.slice(bi, bs);
-              if (s[i]) s[i] += bs; // coalesce with previous string
+              if (s[i])
+                s[i] += bs; // coalesce with previous string
               else s[++i] = bs;
             }
             if ((am = am[0]) === (bm = bm[0])) {
               // numbers in a & b match
-              if (s[i]) s[i] += bm; // coalesce with previous string
+              if (s[i])
+                s[i] += bm; // coalesce with previous string
               else s[++i] = bm;
             } else {
               // interpolate non-matching numbers
@@ -5957,7 +5965,8 @@
           // Add remains of b.
           if (bi < b.length) {
             bs = b.slice(bi);
-            if (s[i]) s[i] += bs; // coalesce with previous string
+            if (s[i])
+              s[i] += bs; // coalesce with previous string
             else s[++i] = bs;
           }
 
@@ -5982,22 +5991,22 @@
             : (t === "number"
                 ? interpolateNumber
                 : t === "string"
-                ? (c = color(b))
-                  ? ((b = c), rgb)
-                  : string
-                : b instanceof color
-                ? rgb
-                : b instanceof Date
-                ? date
-                : isNumberArray(b)
-                ? numberArray
-                : Array.isArray(b)
-                ? genericArray
-                : (typeof b.valueOf !== "function" &&
-                    typeof b.toString !== "function") ||
-                  isNaN(b)
-                ? object
-                : interpolateNumber)(a, b);
+                  ? (c = color(b))
+                    ? ((b = c), rgb)
+                    : string
+                  : b instanceof color
+                    ? rgb
+                    : b instanceof Date
+                      ? date
+                      : isNumberArray(b)
+                        ? numberArray
+                        : Array.isArray(b)
+                          ? genericArray
+                          : (typeof b.valueOf !== "function" &&
+                                typeof b.toString !== "function") ||
+                              isNaN(b)
+                            ? object
+                            : interpolateNumber)(a, b);
         }
 
         function interpolateRound(a, b) {
@@ -6092,7 +6101,7 @@
             function cubehelix(start, end) {
               var h = hue(
                   (start = cubehelix$1(start)).h,
-                  (end = cubehelix$1(end)).h
+                  (end = cubehelix$1(end)).h,
                 ),
                 s = nogamma(start.s, end.s),
                 l = nogamma(start.l, end.l),
@@ -6221,7 +6230,7 @@
                   (output = piecewise(
                     domain.map(transform),
                     range,
-                    interpolate$1
+                    interpolate$1,
                   ))
                 )(transform(clamp(x)));
           }
@@ -6234,10 +6243,10 @@
                   (input = piecewise(
                     range,
                     domain.map(transform),
-                    interpolateNumber
+                    interpolateNumber,
                   ))
-                )(y)
-              )
+                )(y),
+              ),
             );
           };
 
@@ -6299,7 +6308,7 @@
         function formatDecimalParts(x, p) {
           if (
             (i = (x = p ? x.toExponential(p - 1) : x.toExponential()).indexOf(
-              "e"
+              "e",
             )) < 0
           )
             return null; // NaN, ±Infinity
@@ -6443,12 +6452,12 @@
           return i === n
             ? coefficient
             : i > n
-            ? coefficient + new Array(i - n + 1).join("0")
-            : i > 0
-            ? coefficient.slice(0, i) + "." + coefficient.slice(i)
-            : "0." +
-              new Array(1 - i).join("0") +
-              formatDecimalParts(x, Math.max(0, p + i - 1))[0]; // less than 1y!
+              ? coefficient + new Array(i - n + 1).join("0")
+              : i > 0
+                ? coefficient.slice(0, i) + "." + coefficient.slice(i)
+                : "0." +
+                  new Array(1 - i).join("0") +
+                  formatDecimalParts(x, Math.max(0, p + i - 1))[0]; // less than 1y!
         }
 
         function formatRounded(x, p) {
@@ -6459,11 +6468,11 @@
           return exponent < 0
             ? "0." + new Array(-exponent).join("0") + coefficient
             : coefficient.length > exponent + 1
-            ? coefficient.slice(0, exponent + 1) +
-              "." +
-              coefficient.slice(exponent + 1)
-            : coefficient +
-              new Array(exponent - coefficient.length + 2).join("0");
+              ? coefficient.slice(0, exponent + 1) +
+                "." +
+                coefficient.slice(exponent + 1)
+              : coefficient +
+                new Array(exponent - coefficient.length + 2).join("0");
         }
 
         var formatTypes = {
@@ -6513,7 +6522,7 @@
                 ? identity
                 : formatGroup(
                     map.call(locale.grouping, Number),
-                    locale.thousands + ""
+                    locale.thousands + "",
                   ),
             currencyPrefix =
               locale.currency === undefined ? "" : locale.currency[0] + "",
@@ -6560,14 +6569,14 @@
                 symbol === "$"
                   ? currencyPrefix
                   : symbol === "#" && /[boxX]/.test(type)
-                  ? "0" + type.toLowerCase()
-                  : "",
+                    ? "0" + type.toLowerCase()
+                    : "",
               suffix =
                 symbol === "$"
                   ? currencySuffix
                   : /[%p]/.test(type)
-                  ? percent
-                  : "";
+                    ? percent
+                    : "";
 
             // What format function should we use?
             // Is this an integer type?
@@ -6583,8 +6592,8 @@
               precision === undefined
                 ? 6
                 : /[gprs]/.test(type)
-                ? Math.max(1, Math.min(21, precision))
-                : Math.max(0, Math.min(20, precision));
+                  ? Math.max(1, Math.min(21, precision))
+                  : Math.max(0, Math.min(20, precision));
 
             function format(value) {
               var valuePrefix = prefix,
@@ -6621,8 +6630,8 @@
                       ? sign
                       : minus
                     : sign === "-" || sign === "("
-                    ? ""
-                    : sign) + valuePrefix;
+                      ? ""
+                      : sign) + valuePrefix;
                 valueSuffix =
                   (type === "s" ? prefixes[8 + prefixExponent / 3] : "") +
                   valueSuffix +
@@ -6660,7 +6669,7 @@
               if (comma && zero)
                 (value = group(
                   padding + value,
-                  padding.length ? width - valueSuffix.length : Infinity
+                  padding.length ? width - valueSuffix.length : Infinity,
                 )),
                   (padding = "");
 
@@ -6699,7 +6708,7 @@
             var f = newFormat(
                 ((specifier = formatSpecifier(specifier)),
                 (specifier.type = "f"),
-                specifier)
+                specifier),
               ),
               e =
                 Math.max(-8, Math.min(8, Math.floor(exponent(value) / 3))) * 3,
@@ -6741,7 +6750,7 @@
           return Math.max(
             0,
             Math.max(-8, Math.min(8, Math.floor(exponent(value) / 3))) * 3 -
-              exponent(Math.abs(step))
+              exponent(Math.abs(step)),
           );
         }
 
@@ -6774,8 +6783,8 @@
                 !isNaN(
                   (precision = precisionRound(
                     step,
-                    Math.max(Math.abs(start), Math.abs(stop))
-                  ))
+                    Math.max(Math.abs(start), Math.abs(stop)),
+                  )),
                 )
               )
                 specifier.precision = precision - (specifier.type === "e");
@@ -6808,7 +6817,7 @@
               d[0],
               d[d.length - 1],
               count == null ? 10 : count,
-              specifier
+              specifier,
             );
           };
 
@@ -6872,7 +6881,7 @@
           function interval(date) {
             return (
               floori(
-                (date = arguments.length === 0 ? new Date() : new Date(+date))
+                (date = arguments.length === 0 ? new Date() : new Date(+date)),
               ),
               date
             );
@@ -6901,7 +6910,7 @@
             return (
               offseti(
                 (date = new Date(+date)),
-                step == null ? 1 : Math.floor(step)
+                step == null ? 1 : Math.floor(step),
               ),
               date
             );
@@ -6938,7 +6947,7 @@
                       while ((offseti(date, +1), !test(date))) {} // eslint-disable-line no-empty
                     }
                 }
-              }
+              },
             );
           };
 
@@ -6954,12 +6963,12 @@
               return !isFinite(step) || !(step > 0)
                 ? null
                 : !(step > 1)
-                ? interval
-                : interval.filter(
-                    field
-                      ? (d) => field(d) % step === 0
-                      : (d) => interval.count(0, d) % step === 0
-                  );
+                  ? interval
+                  : interval.filter(
+                      field
+                        ? (d) => field(d) % step === 0
+                        : (d) => interval.count(0, d) % step === 0,
+                    );
             };
           }
 
@@ -6975,7 +6984,7 @@
           },
           (start, end) => {
             return end - start;
-          }
+          },
         );
 
         // An optimized implementation for this simple case.
@@ -6992,7 +7001,7 @@
             },
             (start, end) => {
               return (end - start) / k;
-            }
+            },
           );
         };
 
@@ -7016,7 +7025,7 @@
           },
           (date) => {
             return date.getUTCSeconds();
-          }
+          },
         );
 
         second.range;
@@ -7024,7 +7033,9 @@
         const timeMinute = timeInterval(
           (date) => {
             date.setTime(
-              date - date.getMilliseconds() - date.getSeconds() * durationSecond
+              date -
+                date.getMilliseconds() -
+                date.getSeconds() * durationSecond,
             );
           },
           (date, step) => {
@@ -7035,7 +7046,7 @@
           },
           (date) => {
             return date.getMinutes();
-          }
+          },
         );
 
         timeMinute.range;
@@ -7052,7 +7063,7 @@
           },
           (date) => {
             return date.getUTCMinutes();
-          }
+          },
         );
 
         utcMinute.range;
@@ -7063,7 +7074,7 @@
               date -
                 date.getMilliseconds() -
                 date.getSeconds() * durationSecond -
-                date.getMinutes() * durationMinute
+                date.getMinutes() * durationMinute,
             );
           },
           (date, step) => {
@@ -7074,7 +7085,7 @@
           },
           (date) => {
             return date.getHours();
-          }
+          },
         );
 
         timeHour.range;
@@ -7091,7 +7102,7 @@
           },
           (date) => {
             return date.getUTCHours();
-          }
+          },
         );
 
         utcHour.range;
@@ -7105,7 +7116,7 @@
               (end.getTimezoneOffset() - start.getTimezoneOffset()) *
                 durationMinute) /
             durationDay,
-          (date) => date.getDate() - 1
+          (date) => date.getDate() - 1,
         );
 
         timeDay.range;
@@ -7122,7 +7133,7 @@
           },
           (date) => {
             return date.getUTCDate() - 1;
-          }
+          },
         );
 
         utcDay.range;
@@ -7139,7 +7150,7 @@
           },
           (date) => {
             return Math.floor(date / durationDay);
-          }
+          },
         );
 
         unixDay.range;
@@ -7161,7 +7172,7 @@
                     durationMinute) /
                 durationWeek
               );
-            }
+            },
           );
         }
 
@@ -7185,7 +7196,7 @@
           return timeInterval(
             (date) => {
               date.setUTCDate(
-                date.getUTCDate() - ((date.getUTCDay() + 7 - i) % 7)
+                date.getUTCDate() - ((date.getUTCDay() + 7 - i) % 7),
               );
               date.setUTCHours(0, 0, 0, 0);
             },
@@ -7194,7 +7205,7 @@
             },
             (start, end) => {
               return (end - start) / durationWeek;
-            }
+            },
           );
         }
 
@@ -7231,7 +7242,7 @@
           },
           (date) => {
             return date.getMonth();
-          }
+          },
         );
 
         timeMonth.range;
@@ -7253,7 +7264,7 @@
           },
           (date) => {
             return date.getUTCMonth();
-          }
+          },
         );
 
         utcMonth.range;
@@ -7271,7 +7282,7 @@
           },
           (date) => {
             return date.getFullYear();
-          }
+          },
         );
 
         // An optimized implementation for this simple case.
@@ -7286,7 +7297,7 @@
                 },
                 (date, step) => {
                   date.setFullYear(date.getFullYear() + step * k);
-                }
+                },
               );
         };
 
@@ -7305,7 +7316,7 @@
           },
           (date) => {
             return date.getUTCFullYear();
-          }
+          },
         );
 
         // An optimized implementation for this simple case.
@@ -7315,14 +7326,14 @@
             : timeInterval(
                 (date) => {
                   date.setUTCFullYear(
-                    Math.floor(date.getUTCFullYear() / k) * k
+                    Math.floor(date.getUTCFullYear() / k) * k,
                   );
                   date.setUTCMonth(0, 1);
                   date.setUTCHours(0, 0, 0, 0);
                 },
                 (date, step) => {
                   date.setUTCFullYear(date.getUTCFullYear() + step * k);
-                }
+                },
               );
         };
 
@@ -7925,7 +7936,7 @@
           return pad(
             timeThursday.count(timeYear(d), d) + (timeYear(d).getDay() === 4),
             p,
-            2
+            2,
           );
         }
 
@@ -8020,7 +8031,7 @@
           return pad(
             utcThursday.count(utcYear(d), d) + (utcYear(d).getUTCDay() === 4),
             p,
-            2
+            2,
           );
         }
 
@@ -8160,7 +8171,7 @@
                   k10 === 0
                     ? 0.5
                     : ((x = (transform(x) - t0) * k10),
-                      clamp ? Math.max(0, Math.min(1, x)) : x)
+                      clamp ? Math.max(0, Math.min(1, x)) : x),
                 );
           }
 
@@ -8253,7 +8264,7 @@
           colorParentMap.set(root, COLOR_BASE);
           if (root.children != null) {
             const colorScale = sequential([0, root.children.length], (n) =>
-              hsl(360 * n, 0.3, 0.85)
+              hsl(360 * n, 0.3, 0.85),
             );
             root.children.forEach((c, id) => {
               colorParentMap.set(c, colorScale(id).toString());
@@ -8326,7 +8337,7 @@
               for (const sizeKey of availableSizeProperties) {
                 sizes[sizeKey] = nodeData.children.reduce(
                   (acc, child) => getModuleSize(child, sizeKey) + acc,
-                  0
+                  0,
                 );
               }
             } else {
@@ -8362,10 +8373,10 @@
                     layout,
                   },
                 },
-                { children: o$1(Main, {}) }
-              )
+                { children: o$1(Main, {}) },
+              ),
             ),
-            parentNode
+            parentNode,
           );
         };
 

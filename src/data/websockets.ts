@@ -8,7 +8,7 @@ export const fetchHubs = (hass: HomeAssistant): Promise<string[]> =>
 
 export const fetchZigbeeData = (
   hass: HomeAssistant,
-  hub: string
+  hub: string,
 ): Promise<zigbeeData> =>
   hass.callWS({
     type: "wiser/zigbee",

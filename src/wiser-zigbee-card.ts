@@ -28,10 +28,10 @@ import { SubscribeMixin } from "./components/subscribe-mixin";
 /* eslint no-console: 0 */
 console.info(
   `%c  WISER-ZIGBEE-NETWORK-CARD \n%c  ${localize(
-    "common.version"
+    "common.version",
   )} ${CARD_VERSION}    `,
   "color: orange; font-weight: bold; background: black",
-  "color: white; font-weight: bold; background: dimgray"
+  "color: white; font-weight: bold; background: dimgray",
 );
 
 // This puts your card into the UI card picker dialog
@@ -64,7 +64,7 @@ export class WiserZigbeeCard
   current_theme = "";
   need_render = false;
   is_initialised = false;
-  is_preview = false;
+  is_preview = true;
   layoutData;
   //boundNodeHandler;
   boundDialogClosedHandler;
@@ -119,7 +119,7 @@ export class WiserZigbeeCard
         (ev: WiserEventData) => this.handleUpdate(ev),
         {
           type: "wiser_updated",
-        }
+        },
       ),
     ];
   }
@@ -184,7 +184,7 @@ export class WiserZigbeeCard
     ) {
       this.current_theme = this.hass.selectedTheme;
       const priTextColor = getComputedStyle(
-        document.documentElement
+        document.documentElement,
       ).getPropertyValue("--primary-text-color");
       this.options.edges.font.color = priTextColor;
       this.network?.setOptions(this.options);
@@ -244,7 +244,7 @@ export class WiserZigbeeCard
 
   render_refresh_button(): TemplateResult {
     return html`
-      <mwc-button .disabled="false" @click=${this.refreshClick}>
+      <mwc-button @click=${this.refreshClick}>
         ${this.hass!.localize("ui.common.refresh")}
       </mwc-button>
     `;
@@ -252,9 +252,7 @@ export class WiserZigbeeCard
 
   render_save_layout_button(): TemplateResult {
     return html`
-      <mwc-button .disabled="false" @click="${this.saveLayoutClick}">
-        Save Layout
-      </mwc-button>
+      <mwc-button @click="${this.saveLayoutClick}">Save Layout</mwc-button>
     `;
   }
 
